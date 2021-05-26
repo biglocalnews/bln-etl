@@ -37,13 +37,30 @@ def test_add_dir(tmp_path):
     target_dir = fixture_path('files')
     archive = Archive(pth)
     archive.add_dir(target_dir)
-    files = ZipFile(pth).namelist()
     contents = [
         'test.csv',
         'test2.csv',
         'nested/test3.csv'
     ]
     assert ZipFile(pth).namelist() == contents
+
+def test_add_dir_skip_hidden(tmp_path):
+    "Should skip hidden files and folders by default"
+    pth = Path(tmp_path, 'archive.zip')
+    target_dir = fixture_path('files')
+    archive = Archive(pth)
+    archive.add_dir(target_dir)
+    files = ZipFile(pth).namelist()
+    assert 'hidden/.secret.txt' not in files
+
+def test_add_dir_include_hidden(tmp_path):
+    "Should include hidden files when requested"
+    pth = Path(tmp_path, 'archive.zip')
+    target_dir = fixture_path('files')
+    archive = Archive(pth)
+    archive.add_dir(target_dir, skip_hidden=False)
+    files = ZipFile(pth).namelist()
+    assert '.hidden/.secret.txt' in files
 
 def test_list(tmp_path):
     zip_path = fixture_path('test.zip')

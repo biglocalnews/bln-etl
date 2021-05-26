@@ -1,4 +1,5 @@
 import os
+import glob
 
 from pathlib import Path
 from zipfile import ZipFile
@@ -30,18 +31,22 @@ class Archive:
         with ZipFile(self.path, 'r') as zfile:
             return zfile.namelist()
 
-    def add_dir(self, folder, pattern='**/*'):
+    def add_dir(self, folder, pattern='**/*', skip_hidden=True):
         """Append directory contents to a zipfile
 
         Preserves nested structure of files within a directory, 
         automatically dropping the directories leading up to 
-        and including the specified folder
+        and including the specified folder.
+
+        Skips hidden files and folders by default.
 
         """
         root = Path(folder)
         with ZipFile(self.path, mode='a') as zfile:
             for pth in root.glob(pattern):
                 if pth.is_dir():
+                    continue
+                if skip_hidden and pth.name.startswith('.'):
                     continue
                 arcname = self._arcname(pth, root)
                 zfile.write(pth, arcname=arcname)
@@ -51,15 +56,3 @@ class Archive:
         return str(file_path)\
                 .split(str(split_on))[-1]\
                 .lstrip('/')
-
-
-    """
-    def compress(self):
-        output_dir, date = os.path.split(self.project_data_dir)
-        zipped_file = f"{output_dir}/{self.metadata['slug']}_{date}.zip"
-        with ZipFile(zipped_file, 'w') as output:
-            self.files.sort(key=lambda x: (x.isupper(), x[0].islower()))
-            for file in self.files:
-                output.write(file, os.path.basename(file))
-        self.files.append(zipped_file)
-    """
