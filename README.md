@@ -6,25 +6,24 @@
 
 ## Overview
 
-Utilities to assist with data gathering and publishing to Big Local News.
+Utilities to assist with data gathering for and publishing to [Big Local News][].
+It supports common workflows used by the BLN core team for its own data
+gathering operations, but may also be useful to others working with our
+platform.
 
-In particular, helper code in this package focuses on:
+In particular, this package helps:
 
-- simplying acquisition of data from GitHub repos
+- simplifying acquisition of data from GitHub repos
 - preparing data for upload to a BLN platform project
 - archiving of files as Zips
 
-
-
 ## Install
 
-Dependencies:
-
-* [Download and install git](https://git-scm.com/downloads)
-
-```python
-TK: pip install <github repo url after open sourcing>
-```
+* [Install git CLI tools](https://git-scm.com/downloads)
+* Install the `bln_etl` package from GitHub:
+  ```python
+  TK: pip install <github repo url after open sourcing>
+  ```
 
 ## Archive
 
@@ -56,3 +55,4 @@ archive.list()
 > See the [`Archive` class][] for additional usage details.
 
 [`Archive` class]: https://github.com/biglocalnews/bln-etl/blob/1cc80233d79b9ec9d091f8b46fd27510c8b59ec4/bln_etl/archive.py#L8
+[Big Local News](https://biglocalnews.org)
