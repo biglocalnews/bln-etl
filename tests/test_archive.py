@@ -39,10 +39,26 @@ def test_add_dir(tmp_path):
     archive.add_dir(target_dir)
     contents = [
         'test.csv',
+        'test.json',
         'test2.csv',
         'nested/test3.csv'
     ]
     assert ZipFile(pth).namelist() == contents
+
+def test_add_dir_glob(tmp_path):
+    "Should only add files that match glob pattern"
+    pth = Path(tmp_path, 'archive.zip')
+    target_dir = fixture_path('files')
+    archive = Archive(pth)
+    archive.add_dir(target_dir, pattern='**/*.csv')
+    contents = [
+        'test.csv',
+        'test2.csv',
+        'nested/test3.csv'
+    ]
+    actual = ZipFile(pth).namelist()
+    assert actual == contents
+    assert 'test.json' not in actual
 
 def test_add_dir_skip_hidden(tmp_path):
     "Should skip hidden files and folders by default"
