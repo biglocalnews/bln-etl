@@ -2,11 +2,24 @@
 
 Utilities to assist with data gathering and publishing to Big Local News.
 
-In particular, helper code in this package focuses:
+In particular, helper code in this package focuses on:
 
 - simplying acquisition of data from GitHub repos
 - preparing data for upload to a BLN platform project
 - archiving of files as Zips
+
+- [Install](#install)
+- [Archive](#archive)
+
+## Install
+
+Dependencies:
+
+* [Download and install git](https://git-scm.com/downloads)
+
+```python
+TK: pip install <github repo url after open sourcing>
+```
 
 ## Archive
 
