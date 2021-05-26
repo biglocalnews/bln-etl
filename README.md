@@ -1,10 +1,12 @@
 # BLN ETL
 
-Utilities to assist with data gathering and publishing scripts for Big Local News.
+Utilities to assist with data gathering and publishing to Big Local News.
 
-In particular, focused on simplying acquisition of data from GitHub and
-preparing data for upload to a BLN platform project and archiving of
-compressed files.
+In particular, helper code in this package focuses:
+
+- simplying acquisition of data from GitHub repos
+- preparing data for upload to a BLN platform project
+- archiving of files as Zips
 
 ## Archive
 
@@ -33,4 +35,6 @@ archive.add_dir('/tmp/folder-with-data', skip_hidden=False)
 archive.list()
 ```
 
-> See the `Archive` class for additional usage details.
+> See the [`Archive` class][] for additional usage details.
+
+[`Archive` class]: https://github.com/biglocalnews/bln-etl/blob/1cc80233d79b9ec9d091f8b46fd27510c8b59ec4/bln_etl/archive.py#L8
