@@ -1,5 +1,11 @@
 # BLN ETL
 
+- [Overview](#overview)
+- [Install](#install)
+- [Archive](#archive)
+
+## Overview
+
 Utilities to assist with data gathering and publishing to Big Local News.
 
 In particular, helper code in this package focuses on:
@@ -8,8 +14,7 @@ In particular, helper code in this package focuses on:
 - preparing data for upload to a BLN platform project
 - archiving of files as Zips
 
-- [Install](#install)
-- [Archive](#archive)
+
 
 ## Install
 
