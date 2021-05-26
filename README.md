@@ -2,7 +2,8 @@
 
 - [Overview](#overview)
 - [Install](#install)
-- [Archive](#archive)
+- [Usage](#usage)
+  - [Archive](#archive)
 
 ## Overview
 
@@ -24,8 +25,9 @@ In particular, this package helps:
   ```python
   TK: pip install <github repo url after open sourcing>
   ```
+## Usage
 
-## Archive
+### Archive
 
 A wrapper class to help with creation of [ZipFiles][].
 
