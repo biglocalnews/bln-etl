@@ -1,6 +1,6 @@
 from pathlib import Path
 from zipfile import ZipFile
-from bln_etl.archive import Archive
+from bln_etl import Archive
 from .conftest import fixture_path
 
 
