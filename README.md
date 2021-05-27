@@ -3,6 +3,7 @@
 - [Overview](#overview)
 - [Install](#install)
 - [Usage](#usage)
+  - [Git Repository](#git-repository)
   - [Archive](#archive)
 
 ## Overview
@@ -26,6 +27,54 @@ In particular, this package provides utility code to:
   TK: pip install <github repo url after open sourcing>
   ```
 ## Usage
+
+
+### Git Repository
+
+The [Repository][] class is a light wrapper around basic Git command-line
+utilities. It is a [context manager][] that:
+
+  - automatically creates the project folder if it doesn't exist
+  - switches the current working directory to the local path of a repository before executing git commands
+  - restores the working directory to its original state upon exit
+
+As such, you should always instantiate `Repository` using a [with statement][].
+
+```python
+with Repository('/path/to/data-project-repo') as repo:
+
+  # Check if directory is initialized as a git repo
+  repo.initialized
+
+  # Initialize directory as a git repo
+  repo.init()
+
+  # Or clone a repo to the data-project-repo
+  repo.clone('git@github.com:biglocalnews/bln-etl.git')
+
+  # Stage all file changes
+  repo.add()
+
+  # Commit staged changes (a commit message is required)
+  message = "Added some code"
+  repo.commit(message)
+
+  # Push changes (default: main branch of remote "origin")
+  repo.push()
+
+  # Customize the push
+  repo.push(remote="upstream", branch="master")
+```
+
+`Repository` also provides a static method that doesn't require use of a
+`with` statement:
+
+```python
+url = 'git@github.com:biglocalnews/bln-etl.git'
+target_dir = '/tmp/etl'
+Repository.clone_to_dir(url, target_dir)
+```
+
 
 ### Archive
 
@@ -58,3 +107,5 @@ archive.list()
 
 [`Archive` class]: https://github.com/biglocalnews/bln-etl/blob/1cc80233d79b9ec9d091f8b46fd27510c8b59ec4/bln_etl/archive.py#L8
 [Big Local News]: https://biglocalnews.org
+[context manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
+[with statement]: https://docs.python.org/3/reference/compound_stmts.html#with
