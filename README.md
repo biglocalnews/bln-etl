@@ -35,7 +35,7 @@ The [Repository][] class is a light wrapper around basic Git command-line
 utilities. It is a [context manager][] that:
 
   - automatically creates the project folder if it doesn't exist
-  - switches the current working directory to the local path of a repository before executing git commands
+  - switches the current working directory to repository folder before executing git commands
   - restores the working directory to its original state upon exit
 
 As such, you should always instantiate `Repository` using a [with statement][].
@@ -108,4 +108,5 @@ archive.list()
 [`Archive` class]: https://github.com/biglocalnews/bln-etl/blob/1cc80233d79b9ec9d091f8b46fd27510c8b59ec4/bln_etl/archive.py#L8
 [Big Local News]: https://biglocalnews.org
 [context manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
+[repository]: https://github.com/biglocalnews/bln-etl/blob/1491e328025466a33339e861aefc5235c32cefb3/bln_etl/repository.py#L6
 [with statement]: https://docs.python.org/3/reference/compound_stmts.html#with
