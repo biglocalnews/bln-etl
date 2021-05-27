@@ -28,7 +28,6 @@ In particular, this package provides utility code to:
   ```
 ## Usage
 
-
 ### Git Repository
 
 The [Repository][] class is a light wrapper around basic Git command-line
@@ -46,10 +45,10 @@ with Repository('/path/to/data-project-repo') as repo:
   # Check if directory is initialized as a git repo
   repo.initialized
 
-  # Initialize directory as a git repo
+  # Initialize directory as a git repo...
   repo.init()
 
-  # Or clone a repo to the data-project-repo
+  # ...or clone a repo to the data-project-repo folder
   repo.clone('git@github.com:biglocalnews/bln-etl.git')
 
   # Stage all file changes
@@ -66,10 +65,11 @@ with Repository('/path/to/data-project-repo') as repo:
   repo.push(remote="upstream", branch="master")
 ```
 
-`Repository` also provides a static method that doesn't require use of a
+[Repository][] also provides a static method that doesn't require use of a
 `with` statement:
 
 ```python
+# Clone a repo to specified local directory
 url = 'git@github.com:biglocalnews/bln-etl.git'
 target_dir = '/tmp/etl'
 Repository.clone_to_dir(url, target_dir)
