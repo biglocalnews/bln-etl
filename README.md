@@ -57,4 +57,4 @@ archive.list()
 > See the [`Archive` class][] for additional usage details.
 
 [`Archive` class]: https://github.com/biglocalnews/bln-etl/blob/1cc80233d79b9ec9d091f8b46fd27510c8b59ec4/bln_etl/archive.py#L8
-[Big Local News](https://biglocalnews.org)
+[Big Local News]: https://biglocalnews.org
