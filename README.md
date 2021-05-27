@@ -40,6 +40,8 @@ utilities. It is a [context manager][] that:
 As such, you should always instantiate `Repository` using a [with statement][].
 
 ```python
+from bln_etl import Repository
+
 with Repository('/path/to/data-project-repo') as repo:
 
   # Check if directory is initialized as a git repo
