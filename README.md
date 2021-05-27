@@ -12,11 +12,11 @@ It supports common workflows used by the BLN core team for its own data
 gathering operations, but may also be useful to others working with our
 platform.
 
-In particular, this package helps:
+In particular, this package provides utility code to:
 
-- simplifying acquisition of data from GitHub repos
-- preparing data for upload to a BLN platform project
-- archiving of files as Zips
+- Simplify acquisition of data from GitHub repos
+- Prepare data for upload to a BLN platform project
+- Archive files as Zips
 
 ## Install
 
