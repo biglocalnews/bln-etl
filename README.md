@@ -14,9 +14,9 @@ platform.
 
 In particular, this package provides utility code to:
 
-- Simplify acquisition of data from GitHub repos
-- Prepare data for upload to a BLN platform project
-- Archive files as Zips
+- Simplify data acquisition from GitHub repos
+- Create a Zip archive
+- Upload files to a BLN platform project
 
 ## Install
 
