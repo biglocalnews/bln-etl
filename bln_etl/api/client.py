@@ -2,7 +2,7 @@
 """
 import requests
 
-from bln_etl.api_queries import (
+from .queries import (
     DELETE_FILE_QUERY,
     PROJECT_FILES_QUERY,
     USER_PROJECTS_QUERY,
