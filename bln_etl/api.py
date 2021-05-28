@@ -39,9 +39,15 @@ class Client:
         projects = []
         for edge in response['data']['user']['effectiveProjectRoles']['edges']:
             node = edge['node']
-            meta = node['project']
-            meta['user_role'] = node['role']
-            project = Project(self.api_token, meta)
+            kwargs = node['project']
+            name = kwargs.pop('name')
+            kwargs['user_role'] = node['role']
+            kwargs['uuid'] = kwargs.pop('id')
+            kwargs['updated_at'] = kwargs.pop('updatedAt')
+            kwargs['contact_method'] = kwargs.pop('contactMethod')
+            kwargs['is_open'] = kwargs.pop('isOpen')
+            kwargs['api_token'] = self.api_token
+            project = Project(name, **kwargs)
             projects.append(project)
         return projects
 
@@ -105,9 +111,24 @@ class Project:
 
     files = Files()
 
-    def __init__(self, api_token=None, attrs={}):
+    def __init__(self, name,
+            uuid=None,
+            description='',
+            is_open=None,
+            contact=None,
+            contact_method=None,
+            user_role=None,
+            updated_at=None,
+            api_token=None):
+        self.name = name
+        self.id = uuid
+        self.description = description
+        self.is_open = is_open
+        self.contact = contact
+        self.contact_method = contact_method
+        self.user_role = user_role
+        self.updated_at = updated_at
         self.api_token = api_token
-        self.attrs = attrs
 
     def __str__(self):
         return f"<BLN Project: {self.slug}>"
@@ -117,43 +138,7 @@ class Project:
 
     @property
     def slug(self):
-        slug = self.id[:15]
-        try:
-            slug += f" - {self.name[:20]}"
-            if len(self.name) > 20:
-                slug += '...'
-        except KeyError:
-            pass
+        slug = self.name[:20].lower().replace(' ','-')
+        if self.id:
+            slug += f"-{self.id[:15]}"
         return slug
-
-    @property
-    def id(self):
-        return self.attrs['id']
-
-    @property
-    def name(self):
-        return self.attrs['name']
-
-    @property
-    def description(self):
-        return self.attrs['description']
-
-    @property
-    def updated_at(self):
-        return self.attrs['updatedAt']
-
-    @property
-    def is_open(self):
-        return self.attrs['isOpen']
-
-    @property
-    def contact(self):
-        return self.attrs['contact']
-
-    @property
-    def contact_method(self):
-        return self.attrs['contactMethod']
-
-    @property
-    def user_role(self):
-        return self.attrs['user_role']
