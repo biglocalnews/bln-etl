@@ -8,11 +8,12 @@ query {
                     project {
                         id
                         name
-                        updatedAt
                         contactMethod
                         contact
                         description
                         isOpen
+                        createdAt
+                        updatedAt
                     }
                 }
             }
@@ -20,6 +21,26 @@ query {
     }
 }
 """
+
+OPEN_PROJECTS_QUERY = """
+query {
+    openProjects {
+        edges {
+            node {
+              id
+              name
+              description
+              contact
+              contactMethod
+              createdAt
+              updatedAt
+              isOpen
+            }
+        }
+    }
+}
+"""
+
 
 PROJECT_FILES_QUERY ="""
 query Node($id: ID!) {

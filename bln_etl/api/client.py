@@ -6,6 +6,7 @@ from .queries import (
     DELETE_FILE_QUERY,
     PROJECT_FILES_QUERY,
     USER_PROJECTS_QUERY,
+    OPEN_PROJECTS_QUERY,
 )
 
 
@@ -29,32 +30,47 @@ class Client:
 
     @property
     def user_projects(self):
-        variables = {}
         data = {
-            #"operationName":"effectiveProjectRole",
             'query': USER_PROJECTS_QUERY,
-            'variables': variables
+            'variables': {}
         }
         response = self.post(self.api_token, data)
         projects = []
         for edge in response['data']['user']['effectiveProjectRoles']['edges']:
             node = edge['node']
+            kwargs = self._prepare_project_kwargs(node['project'])
             kwargs = node['project']
-            name = kwargs.pop('name')
             kwargs['user_role'] = node['role']
-            kwargs['uuid'] = kwargs.pop('id')
-            kwargs['updated_at'] = kwargs.pop('updatedAt')
-            kwargs['contact_method'] = kwargs.pop('contactMethod')
-            kwargs['is_open'] = kwargs.pop('isOpen')
-            kwargs['api_token'] = self.api_token
+            name = kwargs.pop('name')
             project = Project(name, **kwargs)
             projects.append(project)
         return projects
 
-    """
-    def open_projects(self, list_files=False):
-        response = self.post(self.api_token, {})
-    """
+    @property
+    def open_projects(self):
+        data = {
+            'query': OPEN_PROJECTS_QUERY,
+            'variables': {}
+        }
+        response = self.post(self.api_token, data)
+        projects = []
+        for node in response['data']['openProjects']['edges']:
+            kwargs = self._prepare_project_kwargs(node['node'])
+            name = kwargs.pop('name')
+            project = Project(name, **kwargs)
+            projects.append(project)
+        return projects
+
+    def _prepare_project_kwargs(self, node):
+        kwargs = node
+        kwargs['uuid'] = kwargs.pop('id')
+        kwargs['created_at'] = kwargs.pop('createdAt')
+        kwargs['updated_at'] = kwargs.pop('updatedAt')
+        kwargs['contact_method'] = kwargs.pop('contactMethod')
+        kwargs['is_open'] = kwargs.pop('isOpen')
+        kwargs['api_token'] = self.api_token
+        return kwargs
+
 
 class File:
 
@@ -118,6 +134,7 @@ class Project:
             contact=None,
             contact_method=None,
             user_role=None,
+            created_at=None,
             updated_at=None,
             api_token=None):
         self.name = name
@@ -127,6 +144,7 @@ class Project:
         self.contact = contact
         self.contact_method = contact_method
         self.user_role = user_role
+        self.created_at = created_at
         self.updated_at = updated_at
         self.api_token = api_token
 
