@@ -1,5 +1,6 @@
 """Light-weight BLN API wrappers to simplify CRUD
 """
+import os
 import requests
 
 from .queries import (
@@ -19,6 +20,20 @@ class ConfigurationError(Exception): pass
 
 
 class Base:
+
+    @classmethod
+    def set_api_token(cls, api_token=None):
+        cls.api_token = api_token
+        if not cls.api_token:
+            try:
+                cls.api_token = os.environ['BLN_API_KEY']
+            except KeyError:
+                msg = (
+                    "You must pass an api_token argument "
+                    "or set the BLN_API_KEY "
+                    "environment variable."
+                )
+                raise ConfigurationError(msg)
 
     @classmethod
     def post(cls, api_token, data):
@@ -45,8 +60,8 @@ class Base:
 
 class Client(Base):
 
-    def __init__(self, api_token):
-        self.api_token = api_token
+    def __init__(self, api_token=None):
+        self.set_api_token(api_token)
 
     @property
     def user_projects(self):
@@ -160,7 +175,7 @@ class Project(Base):
         self.user_role = user_role
         self.created_at = created_at
         self.updated_at = updated_at
-        self.api_token = api_token
+        self.set_api_token(api_token)
 
     def __str__(self):
         return f"<BLN Project: {self.slug}>"
@@ -177,21 +192,12 @@ class Project(Base):
 
     @classmethod
     def get(cls, uuid, api_token=None):
-        if not api_token:
-            try:
-                api_token = os.environ['BLN_API_KEY']
-            except KeyError:
-                msg = (
-                    "You must pass an api_token argument "
-                    "or set the BLN_API_KEY "
-                    "environment variable."
-                )
-                raise ConfigurationError(msg)
+        cls.set_api_token(api_token)
         data = {
             'query': PROJECT_QUERY,
             'variables': { "id": uuid }
         }
-        response = cls.post(api_token, data)
+        response = cls.post(cls.api_token, data)
         project_node = response['data']['node']
         if project_node:
             kwargs = cls._prepare_project_kwargs(project_node)
