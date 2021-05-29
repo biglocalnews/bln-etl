@@ -57,11 +57,9 @@ Get a particular project.
 ```python
 from bln_etl import Project
 
-# You'll need a project's UUID.
-# For example, from your own list of projects:
-some_project_id = Client().user_projects[0]
-
-project = Project.get(some_project_id)
+# Project's can be looked up using an "id".
+# (accessible, for example, from Client.user_projects)
+Project.get('Uadfas19etc.etc.')
 ```
 
 Create a project.
