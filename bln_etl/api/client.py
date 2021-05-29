@@ -47,15 +47,14 @@ class Base:
 
     @classmethod
     def _prepare_project_kwargs(cls, node):
-        kwargs = node
-        kwargs['uuid'] = kwargs.pop('id')
-        kwargs['created_at'] = kwargs.pop('createdAt')
-        kwargs['updated_at'] = kwargs.pop('updatedAt')
-        kwargs['contact_method'] = kwargs.pop('contactMethod')
-        kwargs['is_open'] = kwargs.pop('isOpen')
-        #name = kwargs.pop('name')
-        #kwargs['api_token'] = self.api_token
-        return kwargs
+        node.update({
+            'uuid': node.pop('id'),
+            'created_at': node.pop('createdAt'),
+            'updated_at': node.pop('updatedAt'),
+            'contact_method':node.pop('contactMethod'),
+            'is_open': node.pop('isOpen')
+        })
+        return node
 
 
 class Client(Base):
@@ -77,7 +76,6 @@ class Client(Base):
             for edge in response['data']['user']['effectiveProjectRoles']['edges']:
                 node = edge['node']
                 kwargs = self._prepare_project_kwargs(node['project'])
-                kwargs = node['project']
                 kwargs['user_role'] = node['role']
                 name = kwargs.pop('name')
                 project = Project(name, **kwargs)
