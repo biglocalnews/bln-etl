@@ -34,14 +34,16 @@ In particular, this package provides utility code to:
 
 ### Api
 
+> Below examples assume you've configured the `BLN_API_KEY` environment
+> variable.
+
 Get projects.
 
 ```python
 from bln_etl import Client
 
 # Set up the client
-api_key=os.environ['BLN_API_KEY']
-client = Client(api_key)
+client = Client()
 
 # Get your own projects
 client.user_projects
@@ -55,10 +57,11 @@ Get a particular project.
 ```python
 from bln_etl import Project
 
-# You'll need a gobbledygook UUID.
-# e.g., using  Client.user_projects or Client.open_projects
+# You'll need a project's UUID.
+# For example, from your own list of projects:
+some_project_id = Client().user_projects[0]
 
-project = Project.get('Uhad31489etc.etc.')
+project = Project.get(some_project_id)
 ```
 
 Create a project.
@@ -67,7 +70,7 @@ Create a project.
 # Every project requires a name
 project_name = 'Awesome Project'
 
-# Optional additional fields
+# Optional  fields:
 options = {
   'description': 'A truly awesome project.',
   'contact': 'me@aol.com',
@@ -75,6 +78,8 @@ options = {
 }
 project = Project.create(name, **options)
 ```
+
+> TODO: The full list of optional fields are:
 
 ### Git Repository
 
