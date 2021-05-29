@@ -3,6 +3,7 @@
 - [Overview](#overview)
 - [Install](#install)
 - [Usage](#usage)
+  - [API](#api)
   - [Git Repository](#git-repository)
   - [Archive](#archive)
 
