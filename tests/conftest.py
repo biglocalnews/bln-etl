@@ -29,6 +29,8 @@ def set_env(monkeypatch):
 def vcr_config():
     return {
         'filter_headers': [('Authorization', 'JWT DUMMY')],
+        # Enable below to force recording of new API calls
+        #'record_mode':'all',
     }
 
 ## Helper functions
@@ -100,4 +102,3 @@ def working_dir(tmp_path):
 @pytest.fixture
 def create_working_dir(working_dir):
     Path(working_dir).mkdir(parents=True, exist_ok=True)
-
