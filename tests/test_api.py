@@ -16,7 +16,7 @@ def project_uuid():
 def test_user_projects(project_uuid):
     client = Client(TOKEN)
     projects = client.user_projects
-    assert len(projects) ==  7
+    assert len(projects) == 7
     # Expected attributes
     project = [p for p in projects if p.name == 'Test Project'][0]
     assert project.id == project_uuid
@@ -50,3 +50,13 @@ def test_project_get(project_uuid):
 def test_project_get_error(project_uuid):
     project = Project.get(project_uuid[:-2], TOKEN)
     assert project is None
+
+
+@pytest.mark.vcr()
+def test_project_create():
+    kwargs = {
+        'is_open': False ,
+        'description': 'This is a test project.'
+    }
+    project = Project.create('Testing',TOKEN, kwargs)
+    assert project.name == 'Testing'

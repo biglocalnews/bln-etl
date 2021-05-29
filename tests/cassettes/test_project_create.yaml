@@ -1,0 +1,410 @@
+interactions:
+- request:
+    body: '{"query": "\nmutation CreateProject($input: CreateProjectInput!) {\n    createProject(input:
+      $input) {\n        ok {\n            \nid\nupdatedAt\nname\ncontactMethod\ncontact\ndescription\nisOpen\nuserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\ngroupRoles
+      {\n    edges {\n        node {\n            id\n            role\n            group
+      {\n                \nid\nname\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\neffectiveUserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\nfiles
+      {\n    \nname\ncreatedAt\nupdatedAt\ntags {\n    edges {\n        node {\n            id\n            tag
+      {\n                id\n                name\n            }\n        }\n    }\n}\n\n}\n\n        }\n        err\n    }\n}\n",
+      "variables": {"input": {"name": "Testing", "description": "This is a test project."}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1116'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xSQW/aMBi971cgX0eRm4htRZo0VNoOip0NkkBS9eDFJtjYSeSYlgTlv8+Gjcsu
+        m7bjpBycz8/ve9/33hFQYggYHUGmGTHsiy4Fy4wrMK3BqNhL2Qfl7oQoC0PcHTB7lZeaFZ9qQ4pN
+        qemA0T3og+yMQMxsS2pxd2g8nds6ZXWmeWV4WdhquOV1z36kZ1htetW55cDi2GZjm/MXFtVML0rJ
+        6pMQmrvD0xEUJWWuwh35YpWqdIUhWacy+jx7ISoW9D5u0/Vs+c07yIBv4ziSd4+3VCGR+yiM/GQJ
+        r4MJlvPwa5uInQnCXZsuIcQqOmCRbi2fxAoVj8vXPI7j2eI2LxJBJRYLhdupQWJ8OOOxmodSpQJZ
+        jmyIxUygVSzwQ9TMml1lZ9FWvlU5nqAptr97O9FfLpHXlSQNJsrxLpmmRPfCH07YDqelxGssM1Fx
+        7EUefkh8xGGDJvduYC/xEhPYpaEGDnG785BCh3SFYBpOP9r3xZm4rX+6C7que+76YMNPRjw990Gu
+        y331izEOdOp+sWFS/enKnQJeBxWzCdkQWbOLoNCGhBe522Flw8ro2EXQg971FRxeeTchfDfy34/8
+        DwN/eAN9+BbCEYQO/hshuij+H5x/HRybnu7NdwAAAP//AwD5vrT9YAQAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 06:37:40 GMT
+      Expires:
+      - Sat, 29 May 2021 06:37:40 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=8daff1dd-3c30-463e-9397-994c21b45431; Expires=Tue, 29-Jun-2021 06:37:40
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - 8599b7bdfbf8f94f87ce058fe54a169e;o=1
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n            \nid\nupdatedAt\nname\ncontactMethod\ncontact\ndescription\nisOpen\nuserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\ngroupRoles
+      {\n    edges {\n        node {\n            id\n            role\n            group
+      {\n                \nid\nname\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\neffectiveUserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\nfiles
+      {\n    \nname\ncreatedAt\nupdatedAt\ntags {\n    edges {\n        node {\n            id\n            tag
+      {\n                id\n                name\n            }\n        }\n    }\n}\n\n}\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDpmMjg3MTU3YS01ODNlLTQzYjktOTkzZS00NmUxNjZhZWNlNmM="}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1067'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xSX2+bMBx836eIeF0auaBsK9KkRU3bhcZGC38SqPrgYUPs2ICw0wWqfPfZ6Zo9
+        7GXT9jgJCWMd97vf3T07BGvs+M9O3RBq30VTa1xox3f0XlZNR+tPSuO6bDoyoWTvjF8RkOptQwzu
+        Bs4WS3NPqCo61mrW1OY23jI1Mg8eaar0qO0aTgs9MThalubEnmiiaLdqBFV2LiWVPTz8VMIs+Wqd
+        y3yNAN7kIvkcPGGZcnKbDvkmiL66BxGybZom4ub+mkjIKw/GiZdF4DKcI7GMvwwZ3+kw3g15BACS
+        yQHxfGv4BJKwvo++VWmaBqvrqs44EYivJBoWGvLZ4QWP5DIWMufQcBRTxAMO1ylHd0kf9LvW7NIZ
+        +UblbA4XyHzuzUZ/aSJTrcA9wtLyRrQjuBvFP5IwE06mpBskCt4y5CYuuss8yEAP57d2YTdzMx0a
+        02APpmjYuVDCQ76GII8XH83/9QvxoF7TdY7H4+Nx7JTsFMTD49ipumbf/hKMBZ2mn2OYt39quVXA
+        VNhS05ASC0XPgmJTElZX1sPWVJKSma2gC9zLCzC9cK9i8M733vveh4k3vQIeeAuAD4CF/0aJzor/
+        F+dfF8e05813AAAA//8DAA2zR09FBAAA
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 06:37:42 GMT
+      Expires:
+      - Sat, 29 May 2021 06:37:42 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=80f27067-7a07-447b-9200-3d445157c829; Expires=Tue, 29-Jun-2021 06:37:42
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - 435403235798dbafcf19be415bb2c043
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nmutation CreateProject($input: CreateProjectInput!) {\n    createProject(input:
+      $input) {\n        ok {\n            \nid\nupdatedAt\nname\ncontactMethod\ncontact\ndescription\nisOpen\nuserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\ngroupRoles
+      {\n    edges {\n        node {\n            id\n            role\n            group
+      {\n                \nid\nname\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\neffectiveUserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\nfiles
+      {\n    \nname\ncreatedAt\nupdatedAt\ntags {\n    edges {\n        node {\n            id\n            tag
+      {\n                id\n                name\n            }\n        }\n    }\n}\n\n}\n\n        }\n        err\n    }\n}\n",
+      "variables": {"input": {"name": "Testing", "description": "This is a test project."}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1116'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xSTY/aMBS891cgX8siky7qLlKl0oWlsNi0kA+S1R7c2AQbJ44cs5Ag/nttaLn0
+        0qo9VvIhfhm/N29mjoASQ0D/CFLNiGFftBIsNa7AtAb9YidlG6jtGaEKQ9w/YHZ5pjQrPlaGFGul
+        aYfRHWiD9IJAzGwUtbgRGkxmtk5ZlWpeGq4KW/U3vGrZQ1qGVaZVXkZ2LI6t13Y4f2VBxfRCSVad
+        idDMfTwfQaEocxXumi+iJE8iDMkqkcHn6SvJQ0EfwyZZTZffvIOc800YBnL09JAe5mN0i5pPAtfd
+        PBZZPfO/7lE0MbEfNIjDHooSGfvbfTIcQdSkxdNyn4VhOF08ZEUsqMRikeNmYpAYHJIlhDjH+cyX
+        eSKQmftpD4upQFEo8Diop/W2tLtoS9+yHAzRBNvrzm70lyLyqpSkxiR3fZdMU6Jb/g8n7ISzKOEK
+        y1SUHHuBh8fxO7tcjYaP0i7sxV5s5lY0VMMebrYeytEhiRBM/MkH+764NG6qn+6C0+n0cmqDNT8b
+        8fzSBplWu/IXYxzoPP1qw1D9qeSOAa/mJbMJWRNZsSsh34aEF5nTsLRhZXTgIuhBr3sDezfevQ/f
+        993pdu7gbRfevYWwD6GD/0aIroz/B+dfB8em5/TmOwAAAP//AwAuUkKtYAQAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 07:07:03 GMT
+      Expires:
+      - Sat, 29 May 2021 07:07:03 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=5341ea6a-e92d-480c-91b1-b556cbd5fbcb; Expires=Tue, 29-Jun-2021 07:07:03
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - 08a75c28a1bb09d3cdde966d74d58e82;o=1
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n            \nid\nupdatedAt\nname\ncontactMethod\ncontact\ndescription\nisOpen\nuserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\ngroupRoles
+      {\n    edges {\n        node {\n            id\n            role\n            group
+      {\n                \nid\nname\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\neffectiveUserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\nfiles
+      {\n    \nname\ncreatedAt\nupdatedAt\ntags {\n    edges {\n        node {\n            id\n            tag
+      {\n                id\n                name\n            }\n        }\n    }\n}\n\n}\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDoxOGM4MzBjNy1mYjgyLTQwMWItYTUzMi05MWZlYTkwZDE0Mzc="}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1067'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xSXW/aMBR9369AeR1FJitaizRprFAWih0NnIS46oMXO8HG+VBiCknFf5/NVvaw
+        l03b4yRL/tDxveeec14cRjV1xi9OUTJu96QsNE20M3b0Ps/KmhcfG02LtKzZgLO9039FQK63JTO4
+        GZx4S/POeJPUotKiLMwr3oqmZxbtad7oXlWXkid6YHA8Tc1JPPOg4fWqVLyxfTnL7OHxJxNhi68i
+        kpMIAbohKvi8eKZ5KNl92JHNYv3VPSpfbMMwULOHu+Toz+E17D5J1A7zWGbtEn85wMjTMQ46KMAI
+        RkTFeHcg0xmAXVI8rA9ZGIaL1V1WxJIpJFc56jwN5eRI1gCgHOVLrHIiofZxMkJyIWEUSjQP2kW7
+        q8wstaFvWE6m0EPmujcT/aWIoqkUbRHNbd01rxmte/iHE6bDWZRwg1QiK4HcwEXz+J0ZroXTe2UG
+        dmM31r4RDbZghLqdC3N4JBEEBHsfzP/ie+GueXXXOZ1OT6e+k4qzEY9PfSery331izEWdO5+sWFa
+        /qnkloFo/IqbhKRUNfxCCJuQiCKzGlYmkpxNbARd4A6vwOjKvcXg/diu4eAGXA/BzVsAxgBY+G+E
+        6ML4f3D+dXBMet58AwAA//8DAH1Y2rxFBAAA
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 07:07:05 GMT
+      Expires:
+      - Sat, 29 May 2021 07:07:05 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=c2bbbdab-b4f2-44ea-9857-3a61192405fe; Expires=Tue, 29-Jun-2021 07:07:05
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - 48ff3f24d03f5a73defeb1f68aefa5f4
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nmutation CreateProject($input: CreateProjectInput!) {\n    createProject(input:
+      $input) {\n        ok {\n            \nid\nupdatedAt\nname\ncontactMethod\ncontact\ndescription\nisOpen\nuserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\ngroupRoles
+      {\n    edges {\n        node {\n            id\n            role\n            group
+      {\n                \nid\nname\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\neffectiveUserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\nfiles
+      {\n    \nname\ncreatedAt\nupdatedAt\ntags {\n    edges {\n        node {\n            id\n            tag
+      {\n                id\n                name\n            }\n        }\n    }\n}\n\n}\n\n        }\n        err\n    }\n}\n",
+      "variables": {"input": {"name": "Testing", "description": "This is a test project."}}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1116'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xSTY/aMBS891cgX8siY6CrRapUBOwWFpsCTiBZ7cGNTXBw4sgxWz7Ef68NLZde
+        WrXHSrGUPE/emzczJ8CZZaB7AokRzIovRmcisb4gjAHdYqdUHejtBaELy/wdsLs81UYUnyrLirU2
+        vCH4DtRBckVgYTeaO9wQ90YTV+eiSowsrdSFq9KNrGruYTUrKlsrryMbDifWazdcvomgEmaulagu
+        RHjqX15OoNBc+Ir0zefLOI+XBLJVrILP4zeWhxl/DI/xarz4ivZqKjdhGKjhcz9BGAUootExWsAW
+        oUF7QmdoSofWHYj7sIPRrB3TWYfQYStCQfG8+JaGYTie99Miyrgi2Twnx5HFWW8fLyAkOcknVOVx
+        hl2PpEOycYaXYUaegsP4sC3dLsbRdyx7Azwi7nPnNvpLEWVVKnYgLPd9F8JwZmr0hxNuwkWUcEVU
+        kpWSuIXJU9TCEh7w4FH5hSMU2akTDR9ghxy3COd4Hy8xjOnoo/u/uDY+Vj/dBefz+fVcB2t5MeLl
+        tQ5So3flL8Z40GX6zYaB/lPJPQNZTUvhErJmqhI3QtSFRBap17B0YRW85yOIIGrewc4deqDwvtts
+        dVGz8aH5cN9G7yHsQujhvxGiG+P/wfnXwXHpOb/7DgAA//8DAELJdCZgBAAA
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 07:13:23 GMT
+      Expires:
+      - Sat, 29 May 2021 07:13:23 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=d2e6464e-d7db-489b-a6c5-23277de214d4; Expires=Tue, 29-Jun-2021 07:13:23
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - d360dabda3ff57161231e9075b477547
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n            \nid\nupdatedAt\nname\ncontactMethod\ncontact\ndescription\nisOpen\nuserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\ngroupRoles
+      {\n    edges {\n        node {\n            id\n            role\n            group
+      {\n                \nid\nname\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\neffectiveUserRoles
+      {\n    edges {\n        node {\n            id\n            role\n            user
+      {\n                \nid\nname\ndisplayName\ncontactMethod\ncontact\n\n            }\n        }\n    }\n}\nfiles
+      {\n    \nname\ncreatedAt\nupdatedAt\ntags {\n    edges {\n        node {\n            id\n            tag
+      {\n                id\n                name\n            }\n        }\n    }\n}\n\n}\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDo2M2U2YTYzYS03NTU4LTQ2OTEtOTE0MC05M2Q4ZTQ5NTE3Y2U="}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1067'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xSXW/aMBR9369AeS1FxpBVRZo0BLQjxUaAE0iqPnixCXbzpcR0hIr/vmu20oe9
+        bNoeJ8WKbR3fe+4559UR3HBn8OrkhZD2Hxe54bFxBo7ZZ0lRyfxzbXi+LSrRkWLvtN8QRJpdIQA3
+        IcPpDO6FrONKlUYVOdyynapb8PGWkbVplVWhZWw6gJPbLezUi/RrWS2LVNa2rxSJ3Ty+M1G2+HId
+        ZdGaIr6JUv+L98KzQIu74BhtvNVXfEjnahcEfjp5GMWYYB+HLDyGK9SjzO/P2ALP2cTAQmSEXIIX
+        /YgtXMomvRD7+cPqWxIEgbccJXmoRUr1MqPHqSF6eIhWCNGMZjOWZpEmUCN2qfY0WQea3vuN1zyX
+        MEsF9IHlcEymFI57mOgvRVR1mfKG8szWXclK8KrFfjoBHc6iBBuaxrpUFAam92GPKNSQ8V1qBw5x
+        aOYgGmmQS4/PmGTkEK0Jitj0E7zPfxQ+1m/uOqfT6enUdrbqbMTjU9tJqmJf/mKMBZ27X2wYF38q
+        uWWg6nkpISFbntbyQohBSFSeWA1LiKQUQxtBjHD3GrnX+Jahm0G3N8Ddzsfu7U0fXyE0QMjCfyNE
+        F8b/g/OvgwPp+fAdAAD//wMAJ975NEUEAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 07:13:25 GMT
+      Expires:
+      - Sat, 29 May 2021 07:13:25 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=94dcf0ee-b7c3-4bf0-bb77-98efc1eb8589; Expires=Tue, 29-Jun-2021 07:13:25
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - 50fcaf72dd5bcc746ec399b38d6cd6bf
+    status:
+      code: 200
+      message: OK
+version: 1

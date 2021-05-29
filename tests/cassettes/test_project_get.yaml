@@ -279,4 +279,60 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n              \nid\nname\ndescription\ncontact\ncontactMethod\ncreatedAt\nupdatedAt\nisOpen\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDo5ZDQyMzE0NS01OWFhLTQ2N2YtYTZmNy0zMjhiZDI1Yzg3OGI="}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '287'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA1yQTUvDQBCG7/6KsFfTMLs1mgQEC6ma0qQWo9LeluzmC7MbshOhKf3v3YBePA0z
+        PDMvz5yJ4MhJdCZKCznXQivkBZKI4NhVepDqySBXpR6EJ8VI3D8ilVhrYbl1ukq283yQHKVYzbsM
+        GF2Av2A0B4iW9xF78HwKd9S/tT2AxYU0xdD02GhlFzajQQelwUZVjh7RMbqTjsGxLC3bzDkfr5sf
+        3n22Itb+Md6f0mkN2TvQ3ddzvc33LGMHPOTHLjvBlLZ1c4wTepiq5e4leZxvmF0vbVTJv410ieKd
+        9SW5jXTeBt1K6+ySsbf/+O8Q5kAjFkQQeGEQAsCvw+VyubkCAAD//wMAnRwoQ0EBAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 07:13:19 GMT
+      Expires:
+      - Sat, 29 May 2021 07:13:19 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=5f250d8f-c32c-4140-b9f5-d9be4dbfa837; Expires=Tue, 29-Jun-2021 07:13:19
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - 07c6b909cfcea5c4a1210169a6e246ea;o=1
+    status:
+      code: 200
+      message: OK
 version: 1

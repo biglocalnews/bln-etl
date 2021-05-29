@@ -26,7 +26,52 @@ In particular, this package provides utility code to:
   ```python
   TK: pip install <github repo url after open sourcing>
   ```
+* Sign in to [Big Local News][] and create an API key from the Developer Console
+* (Optional): Set the `BLN_API_KEY=<YOUR_KEY>` environment variable (see above)
+
 ## Usage
+
+### Api
+
+Get projects.
+
+```python
+from bln_etl import Client, Project
+
+# Set up the client
+api_key=os.environ['BLN_API_KEY']
+client = Client(api_key)
+
+# Get your own projects
+client.user_projects
+
+# Get our Open Projects
+client.open_projects
+```
+
+Get a particular project.
+
+```python
+# You'll need a big old gobbledygook UUID.
+# e.g., using  Client.user_projects or Client.open_projects
+
+project = Project.get('Uhad31489etc.etc.')
+```
+
+Create a project.
+
+```python
+# Every project requires a name
+project_name = 'Awesome Project'
+
+# Optional additional fields
+options = {
+  'description': 'A truly awesome project.',
+  'contact': 'me@aol.com',
+  'is_open': True, # projects are private by default
+}
+project = Project.create(name, **options)
+```
 
 ### Git Repository
 

@@ -3,6 +3,12 @@
 import os
 import requests
 
+from bln.client import Client as BlnClient
+
+from bln_etl.utils import (
+    snake_to_camel_case
+)
+
 from .queries import (
     DELETE_FILE_QUERY,
     OPEN_PROJECTS_QUERY,
@@ -49,7 +55,8 @@ class Base:
     def _prepare_project_kwargs(cls, node):
         node.update({
             'uuid': node.pop('id'),
-            'created_at': node.pop('createdAt'),
+            # NOTE: bln sdk appears to only return updatedAt on create
+            'created_at': node.get('createdAt', node.get('updatedAt')),
             'updated_at': node.pop('updatedAt'),
             'contact_method':node.pop('contactMethod'),
             'is_open': node.pop('isOpen')
@@ -162,7 +169,8 @@ class Project(Base):
         user_role=None,
         created_at=None,
         updated_at=None,
-        api_token=None
+        api_token=None,
+        **kwargs
         ):
         self.name = name
         self.id = uuid
@@ -201,3 +209,15 @@ class Project(Base):
             kwargs = cls._prepare_project_kwargs(project_node)
             name = kwargs.pop('name')
             return cls(name, **kwargs)
+
+    @classmethod
+    def create(cls, name, api_token=None, meta={}):
+        cls.set_api_token(api_token)
+        new_meta = {snake_to_camel_case(k): v for (k, v) in meta.items()}
+        client = BlnClient(cls.api_token)
+        response = client.createProject(name, **new_meta)
+        if response:
+            kwargs = cls._prepare_project_kwargs(response)
+            name = kwargs.pop('name')
+            return cls(name, **kwargs)
+        return response
