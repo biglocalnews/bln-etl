@@ -27,8 +27,8 @@ In particular, this package provides utility code to:
   ```python
   TK: pip install <github repo url after open sourcing>
   ```
-* Sign in to [Big Local News][] and create an API key from the Developer Console
-* (Optional): Set the `BLN_API_KEY=<YOUR_KEY>` environment variable (see above)
+* Sign in to [Big Local News][] and create an API key in `Developer -> Manage Keys`
+* Set the `BLN_API_KEY=<YOUR_KEY>` environment variable obtained in prior step
 
 ## Usage
 
