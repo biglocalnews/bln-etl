@@ -1,0 +1,210 @@
+interactions:
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n              \nid\nname\ndescription\ncontact\ncontactMethod\ncreatedAt\nupdatedAt\nisOpen\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDo5ZDQyMzE0NS01OWFhLTQ2N2YtYTZmNy0zMjhiZDI1Yzg3OG"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '285'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6pWSkksSVSyqlbKy09JVbLKK83Jqa3lAgAAAP//AwCT+FdHFwAAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 02:01:55 GMT
+      Expires:
+      - Sat, 29 May 2021 02:01:55 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=3f02638d-4214-41ab-889e-f9ca9dde7cd6; Expires=Tue, 29-Jun-2021 02:01:55
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - e00063b1fa0ef85dcda5c77e68b5afaf;o=1
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n              \nid\nname\ndescription\ncontact\ncontactMethod\ncreatedAt\nupdatedAt\nisOpen\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDo5ZDQyMzE0NS01OWFhLTQ2N2YtYTZmNy0zMjhiZDI1Yzg3OG"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '285'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6pWSkksSVSyqlbKy09JVbLKK83Jqa3lAgAAAP//AwCT+FdHFwAAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 02:05:18 GMT
+      Expires:
+      - Sat, 29 May 2021 02:05:18 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=f781a255-7418-426e-b4ea-6850067dd9be; Expires=Tue, 29-Jun-2021 02:05:17
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - 16dbc2746c644795e8979eb24fe65b01
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n              \nid\nname\ndescription\ncontact\ncontactMethod\ncreatedAt\nupdatedAt\nisOpen\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDo5ZDQyMzE0NS01OWFhLTQ2N2YtYTZmNy0zMjhiZDI1Yzg3OG"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '285'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6pWSkksSVSyqlbKy09JVbLKK83Jqa3lAgAAAP//AwCT+FdHFwAAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 02:13:29 GMT
+      Expires:
+      - Sat, 29 May 2021 02:13:29 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=0729ff5f-f583-4c43-9d15-7dae674f9271; Expires=Tue, 29-Jun-2021 02:13:29
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - ec006f8a442c60710cec85d3c0a1735b
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nquery Node($id: ID!) {\n    node(id: $id) {\n        ... on
+      Project {\n              \nid\nname\ndescription\ncontact\ncontactMethod\ncreatedAt\nupdatedAt\nisOpen\n\n        }\n    }\n}\n",
+      "variables": {"id": "UHJvamVjdDo5ZDQyMzE0NS01OWFhLTQ2N2YtYTZmNy0zMjhiZDI1Yzg3OG"}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '285'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6pWSkksSVSyqlbKy09JVbLKK83Jqa3lAgAAAP//AwCT+FdHFwAAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 May 2021 02:15:43 GMT
+      Expires:
+      - Sat, 29 May 2021 02:15:43 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=96c36f73-7879-43ec-96ab-683115bafaeb; Expires=Tue, 29-Jun-2021 02:15:43
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - c33794ac1babee75c5c305c0a503f753
+    status:
+      code: 200
+      message: OK
+version: 1

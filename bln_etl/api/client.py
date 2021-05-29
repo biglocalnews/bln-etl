@@ -4,22 +4,24 @@ import requests
 
 from .queries import (
     DELETE_FILE_QUERY,
+    OPEN_PROJECTS_QUERY,
+    PROJECT_QUERY,
     PROJECT_FILES_QUERY,
     USER_PROJECTS_QUERY,
-    OPEN_PROJECTS_QUERY,
 )
 
 
 ENDPOINT = 'https://api.biglocalnews.org/graphql'
 
-class Client:
+
+class ApiError(Exception): pass
+class ConfigurationError(Exception): pass
 
 
-    def __init__(self, api_token):
-        self.api_token = api_token
+class Base:
 
-    @staticmethod
-    def post(api_token, data):
+    @classmethod
+    def post(cls, api_token, data):
         headers = {'Authorization': f'JWT {api_token}'}
         resp = requests.post(
             ENDPOINT,
@@ -28,6 +30,24 @@ class Client:
         )
         return resp.json()
 
+    @classmethod
+    def _prepare_project_kwargs(cls, node):
+        kwargs = node
+        kwargs['uuid'] = kwargs.pop('id')
+        kwargs['created_at'] = kwargs.pop('createdAt')
+        kwargs['updated_at'] = kwargs.pop('updatedAt')
+        kwargs['contact_method'] = kwargs.pop('contactMethod')
+        kwargs['is_open'] = kwargs.pop('isOpen')
+        #name = kwargs.pop('name')
+        #kwargs['api_token'] = self.api_token
+        return kwargs
+
+
+class Client(Base):
+
+    def __init__(self, api_token):
+        self.api_token = api_token
+
     @property
     def user_projects(self):
         data = {
@@ -35,16 +55,19 @@ class Client:
             'variables': {}
         }
         response = self.post(self.api_token, data)
-        projects = []
-        for edge in response['data']['user']['effectiveProjectRoles']['edges']:
-            node = edge['node']
-            kwargs = self._prepare_project_kwargs(node['project'])
-            kwargs = node['project']
-            kwargs['user_role'] = node['role']
-            name = kwargs.pop('name')
-            project = Project(name, **kwargs)
-            projects.append(project)
-        return projects
+        try:
+            raise ApiError(response['errors'])
+        except KeyError:
+            projects = []
+            for edge in response['data']['user']['effectiveProjectRoles']['edges']:
+                node = edge['node']
+                kwargs = self._prepare_project_kwargs(node['project'])
+                kwargs = node['project']
+                kwargs['user_role'] = node['role']
+                name = kwargs.pop('name')
+                project = Project(name, **kwargs)
+                projects.append(project)
+            return projects
 
     @property
     def open_projects(self):
@@ -61,18 +84,8 @@ class Client:
             projects.append(project)
         return projects
 
-    def _prepare_project_kwargs(self, node):
-        kwargs = node
-        kwargs['uuid'] = kwargs.pop('id')
-        kwargs['created_at'] = kwargs.pop('createdAt')
-        kwargs['updated_at'] = kwargs.pop('updatedAt')
-        kwargs['contact_method'] = kwargs.pop('contactMethod')
-        kwargs['is_open'] = kwargs.pop('isOpen')
-        kwargs['api_token'] = self.api_token
-        return kwargs
 
-
-class File:
+class File(Base):
 
     def __init__(self, api_token, project_id, name):
         self.api_token = api_token
@@ -97,10 +110,10 @@ class File:
             'query': DELETE_FILE_QUERY,
             'variables': variables
         }
-        return Client.post(self.api_token, data)
+        return self.post(self.api_token, data)
 
 
-class Files:
+class Files(Base):
 
     def __get__(self, obj, owner):
         try:
@@ -120,23 +133,24 @@ class Files:
                 'id': obj.project.id
             }
         }
-        return Client.post(obj.api_token, data)
+        return self.post(obj.api_token, data)
 
 
-class Project:
+class Project(Base):
 
     files = Files()
 
     def __init__(self, name,
-            uuid=None,
-            description='',
-            is_open=None,
-            contact=None,
-            contact_method=None,
-            user_role=None,
-            created_at=None,
-            updated_at=None,
-            api_token=None):
+        uuid=None,
+        description='',
+        is_open=None,
+        contact=None,
+        contact_method=None,
+        user_role=None,
+        created_at=None,
+        updated_at=None,
+        api_token=None
+        ):
         self.name = name
         self.id = uuid
         self.description = description
@@ -160,3 +174,26 @@ class Project:
         if self.id:
             slug += f"-{self.id[:15]}"
         return slug
+
+    @classmethod
+    def get(cls, uuid, api_token=None):
+        if not api_token:
+            try:
+                api_token = os.environ['BLN_API_KEY']
+            except KeyError:
+                msg = (
+                    "You must pass an api_token argument "
+                    "or set the BLN_API_KEY "
+                    "environment variable."
+                )
+                raise ConfigurationError(msg)
+        data = {
+            'query': PROJECT_QUERY,
+            'variables': { "id": uuid }
+        }
+        response = cls.post(api_token, data)
+        project_node = response['data']['node']
+        if project_node:
+            kwargs = cls._prepare_project_kwargs(project_node)
+            name = kwargs.pop('name')
+            return cls(name, **kwargs)

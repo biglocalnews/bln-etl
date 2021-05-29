@@ -38,3 +38,15 @@ def test_open_projects():
     assert len(projects) ==  37
     for proj in projects:
         assert proj.is_open == True
+
+
+@pytest.mark.vcr()
+def test_project_get(project_uuid):
+    project = Project.get(project_uuid, TOKEN)
+    assert project.name == 'Test Project'
+
+
+@pytest.mark.vcr()
+def test_project_get_error(project_uuid):
+    project = Project.get(project_uuid[:-2], TOKEN)
+    assert project is None

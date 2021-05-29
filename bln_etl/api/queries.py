@@ -1,62 +1,69 @@
-USER_PROJECTS_QUERY = """
-query {
-    user {
-        effectiveProjectRoles {
-            edges {
-                node {
+project_details_fragment = '''
+id
+name
+description
+contact
+contactMethod
+createdAt
+updatedAt
+isOpen
+'''
+
+USER_PROJECTS_QUERY = f'''
+query {{
+    user {{
+       effectiveProjectRoles {{
+            edges {{
+                node {{
                     role
-                    project {
-                        id
-                        name
-                        contactMethod
-                        contact
-                        description
-                        isOpen
-                        createdAt
-                        updatedAt
-                    }
-                }
-            }
-        }
-    }
-}
-"""
+                    project {{
+                        {project_details_fragment}
+                    }}
+                }}
+            }}
+        }}
+    }}
+}}
+'''
 
-OPEN_PROJECTS_QUERY = """
-query {
-    openProjects {
-        edges {
-            node {
-              id
+OPEN_PROJECTS_QUERY = f'''
+query {{
+    openProjects {{
+        edges {{
+            node {{
+              {project_details_fragment}
+            }}
+        }}
+    }}
+}}
+'''
+
+
+PROJECT_QUERY = f'''
+query Node($id: ID!) {{
+    node(id: $id) {{
+        ... on Project {{
+              {project_details_fragment}
+        }}
+    }}
+}}
+'''
+
+
+PROJECT_FILES_QUERY = f'''
+query Node($id: ID!) {{
+    node(id: $id) {{
+        ... on Project {{
+            {project_details_fragment}
+            files {{
               name
-              description
-              contact
-              contactMethod
-              createdAt
-              updatedAt
-              isOpen
-            }
-        }
-    }
-}
-"""
+            }}
+        }}
+    }}
+}}
+'''
 
-
-PROJECT_FILES_QUERY ="""
-query Node($id: ID!) {
-    node(id: $id) {
-        ... on Project {
-            id
-            name
-            files {
-              name
-            }
-        }
-    }
-}
-"""
-
-DELETE_FILE_QUERY = """
+DELETE_FILE_QUERY = '''
 mutation DeleteFile($input: FileURIInput!) {
     deleteFile(input: $input) {
       ok
@@ -64,4 +71,4 @@ mutation DeleteFile($input: FileURIInput!) {
       __typename
     }
 }
-"""
+'''
