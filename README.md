@@ -74,7 +74,7 @@ options = {
   'contact': 'me@aol.com',
   'is_open': True, # projects are private by default
 }
-project = Project.create(name, **options)
+Project.create(name, **options)
 ```
 
 > TODO: The full list of optional fields are:
