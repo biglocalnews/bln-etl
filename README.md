@@ -57,7 +57,7 @@ Get a particular project.
 ```python
 from bln_etl import Project
 
-# Project's can be looked up using an "id".
+# Projects can be looked up using an "id".
 # (accessible, for example, from Client.user_projects)
 Project.get('Uadfas19etc.etc.')
 ```
