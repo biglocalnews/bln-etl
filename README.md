@@ -36,7 +36,7 @@ In particular, this package provides utility code to:
 Get projects.
 
 ```python
-from bln_etl import Client, Project
+from bln_etl import Client
 
 # Set up the client
 api_key=os.environ['BLN_API_KEY']
@@ -52,7 +52,9 @@ client.open_projects
 Get a particular project.
 
 ```python
-# You'll need a big old gobbledygook UUID.
+from bln_etl import Project
+
+# You'll need a gobbledygook UUID.
 # e.g., using  Client.user_projects or Client.open_projects
 
 project = Project.get('Uhad31489etc.etc.')
