@@ -78,6 +78,24 @@ options = {
 Project.create(name, **options)
 ```
 
+Upload files to a project.
+
+> Silently overwrite pre-existing files of the same name.
+
+```python
+project = Project.get(<uuid>)
+to_upload = ['/tmp/test.csv']
+project.upload_files(to_upload)
+```
+
+List project files.
+
+```
+project = Project.get(<uuid>)
+for f in project.files:
+  print(f)
+```
+
 > TODO: The full list of optional fields are:
 
 ### Git Repository

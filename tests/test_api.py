@@ -77,6 +77,16 @@ def test_project_upload_files():
         fixture_path('test.csv'),
         fixture_path('test2.csv')
     ]
-    response = project.upload_files(to_upload)
+    project.upload_files(to_upload)
     expected = ['test.csv', 'test2.csv']
-    project.files == expected
+    actual = [f.name for f in project.files]
+    assert actual == expected
+
+
+@pytest.mark.vcr()
+def test_project_files():
+    uuid = 'UHJvamVjdDpmMjg3MTU3YS01ODNlLTQzYjktOTkzZS00NmUxNjZhZWNlNmM='
+    project = Project.get(uuid, TOKEN)
+    expected = ['test.csv', 'test2.csv']
+    actual = [f.name for f in project.files]
+    assert actual == expected
