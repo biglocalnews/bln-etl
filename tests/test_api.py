@@ -90,3 +90,21 @@ def test_project_files():
     expected = ['test.csv', 'test2.csv']
     actual = [f.name for f in project.files]
     assert actual == expected
+
+
+@pytest.mark.webtest
+def test_project_file_delete():
+    uuid = 'UHJvamVjdDpmMjg3MTU3YS01ODNlLTQzYjktOTkzZS00NmUxNjZhZWNlNmM='
+    project = Project.get(uuid, TOKEN)
+    expected = ['test.csv', 'test2.csv', 'test.json']
+    to_upload = [
+        fixture_path('files/test.json')
+    ]
+    project.upload_files(to_upload)
+    actual = [f.name for f in project.files]
+    assert 'test.json' in actual
+    for f in project.files:
+        if f.name == 'test.json':
+            f.delete()
+    actual = [f.name for f in project.files]
+    assert 'test.json' not in actual

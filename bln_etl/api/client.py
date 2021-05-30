@@ -136,15 +136,12 @@ class File(Base):
 class Files(Base):
 
     def __get__(self, obj, owner):
-        try:
-            return obj._files
-        except AttributeError:
-            resp = self._get_files(obj)
-            obj._files = [
-                File(obj.api_token, obj.id, node['name'])
-                for node in resp['data']['node']['files']
-            ]
-            return obj._files
+        resp = self._get_files(obj)
+        files = [
+            File(obj.api_token, obj.id, node['name'])
+            for node in resp['data']['node']['files']
+        ]
+        return files
 
     def _get_files(self, obj):
         data = {

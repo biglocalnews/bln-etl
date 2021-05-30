@@ -90,10 +90,18 @@ project.upload_files(to_upload)
 
 List project files.
 
-```
+```python
 project = Project.get(<uuid>)
 for f in project.files:
   print(f)
+```
+
+Delete files.
+
+```python
+project = Project.get(<uuid>)
+for f in project.files:
+  f.delete()
 ```
 
 > TODO: The full list of optional fields are:
