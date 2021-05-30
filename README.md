@@ -87,10 +87,10 @@ Project.create(name, api_token=<YOUR_TOKEN>)
 ```
 > Below `Project.get` examples assume `BLN_API_KEY` env var is set
 
-Upload files to a project (*silently overwrite pre-existing files of the same name*).
+Upload files to a project (*silently overwrites pre-existing files of the same name*).
 
 ```python
-project = Project.get(<uuid>) # or Project.get(<uuid>, api_token=<YOUR_KEY>)
+project = Project.get(<uuid>)
 to_upload = ['/tmp/test.csv']
 project.upload_files(to_upload)
 ```
