@@ -36,7 +36,9 @@ In particular, this package provides utility code to:
 ### Api
 
 > Below examples assume you've configured the `BLN_API_KEY` environment
-> variable.
+> variable. Alternatively, you can pass an `api_token` keyword argument to
+> either the `Client` or `Project` classes on instantiation, as well as
+> class methods on Project.
 
 Get projects.
 
@@ -44,7 +46,7 @@ Get projects.
 from bln_etl import Client
 
 # Set up the client
-client = Client()
+client = Client() # Or Client(api_token=<YOUR_TOKEN>)
 
 # Get your own projects
 client.user_projects
@@ -61,6 +63,9 @@ from bln_etl import Project
 # Projects can be looked up using an "id".
 # (accessible, for example, from Client.user_projects)
 Project.get('Uadfas19etc.etc.')
+
+# Or pass an API token if BLN_API_KEY env var is not set
+Project.get('Uadfas19etc.etc.', api_token=<YOUR_TOKEN>)
 ```
 
 Create a project.
@@ -71,19 +76,21 @@ project_name = 'Awesome Project'
 
 # Optional  fields:
 options = {
-  'description': 'A truly awesome project.',
-  'contact': 'me@aol.com',
-  'is_open': True, # projects are private by default
+    'description': 'A truly awesome project.',
+    'contact': 'me@aol.com',
+    'is_open': True, # projects are private by default
 }
 Project.create(name, **options)
+
+# Or pass an API token if BLN_API_KEY env var is not set
+Project.create(name, api_token=<YOUR_TOKEN>)
 ```
+> Below `Project.get` examples assume `BLN_API_KEY` env var is set
 
-Upload files to a project.
-
-> Silently overwrite pre-existing files of the same name.
+Upload files to a project (*silently overwrite pre-existing files of the same name*).
 
 ```python
-project = Project.get(<uuid>)
+project = Project.get(<uuid>) # or Project.get(<uuid>, api_token=<YOUR_KEY>)
 to_upload = ['/tmp/test.csv']
 project.upload_files(to_upload)
 ```
@@ -93,7 +100,7 @@ List project files.
 ```python
 project = Project.get(<uuid>)
 for f in project.files:
-  print(f)
+    print(f)
 ```
 
 Delete files.
@@ -101,10 +108,8 @@ Delete files.
 ```python
 project = Project.get(<uuid>)
 for f in project.files:
-  f.delete()
+    f.delete()
 ```
-
-> TODO: The full list of optional fields are:
 
 ### Git Repository
 
