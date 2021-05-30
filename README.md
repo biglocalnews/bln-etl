@@ -6,6 +6,7 @@
   - [API](#api)
   - [Git Repository](#git-repository)
   - [Archive](#archive)
+- [Contributors](#contributors)
 
 ## Overview
 
