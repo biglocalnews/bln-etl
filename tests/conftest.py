@@ -33,6 +33,23 @@ def vcr_config():
         #'record_mode':'all',
     }
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--webtest", action="store_true", default=False, help="run tests that hit live services"
+    )
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "webtest: mark test as hitting live websites")
+
+def pytest_collection_modifyitems(config, items):
+    if config.getoption("--webtest"):
+        # if --webtest given in cli: do not skip live web tests
+        return
+    skip_webtest = pytest.mark.skip(reason="need --webtest option to run")
+    for item in items:
+        if "webtest" in item.keywords:
+            item.add_marker(skip_webtest)
+
 ## Helper functions
 def fixture_path(file_name):
     return str(

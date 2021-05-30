@@ -3,7 +3,7 @@ import os
 import pytest
 
 from bln_etl.api import Client, Project
-
+from .conftest import fixture_path
 
 TOKEN=os.environ.get('BLN_API_KEY', 'DUMMY')
 
@@ -60,3 +60,23 @@ def test_project_create():
     }
     project = Project.create('Testing',TOKEN, kwargs)
     assert project.name == 'Testing'
+
+
+@pytest.mark.webtest
+def test_project_upload_files():
+    # NOTE: This is a live webtest to sidestep headaches
+    # related to handling errors raised during the process
+    # of generating file upload URIs (KeyError: 'createFileUploadUri')
+    kwargs = {
+        'is_open': False ,
+        'description': 'This is a test project.'
+    }
+    uuid = 'UHJvamVjdDpmMjg3MTU3YS01ODNlLTQzYjktOTkzZS00NmUxNjZhZWNlNmM='
+    project = Project.get(uuid, TOKEN)
+    to_upload = [
+        fixture_path('test.csv'),
+        fixture_path('test2.csv')
+    ]
+    response = project.upload_files(to_upload)
+    expected = ['test.csv', 'test2.csv']
+    project.files == expected

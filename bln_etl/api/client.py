@@ -141,7 +141,7 @@ class Files(Base):
         except AttributeError:
             resp = self._get_files(obj)
             obj._files = [
-                File(obj.api_token, obj.project.id, node['name'])
+                File(obj.api_token, obj.id, node['name'])
                 for node in resp['data']['node']['files']
             ]
             return obj._files
@@ -150,7 +150,7 @@ class Files(Base):
         data = {
             'query': PROJECT_FILES_QUERY,
             'variables': {
-                'id': obj.project.id
+                'id': obj.id
             }
         }
         return self.post(obj.api_token, data)
@@ -221,3 +221,7 @@ class Project(Base):
             name = kwargs.pop('name')
             return cls(name, **kwargs)
         return response
+
+    def upload_files(self, files):
+        client = BlnClient(self.api_token)
+        client.upload_files(self.id, files)

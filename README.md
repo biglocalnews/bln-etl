@@ -163,3 +163,17 @@ archive.list()
 [context manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
 [repository]: https://github.com/biglocalnews/bln-etl/blob/1491e328025466a33339e861aefc5235c32cefb3/bln_etl/repository.py#L6
 [with statement]: https://docs.python.org/3/reference/compound_stmts.html#with
+
+## Contributors
+
+Tests use pytest and vcrpy to record live web interactions. A small number of tests
+that hit live web services are marked as `webtest` and require an
+additional command-line flag to force their execution.
+
+```python
+# Run tests
+pytest
+
+# Force running of all tests, including live "webtests"
+pytest --webtest
+```
