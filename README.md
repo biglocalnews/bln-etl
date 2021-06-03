@@ -43,7 +43,7 @@ In particular, this package provides utility code to:
 Get projects.
 
 ```python
-from bln_etl import Client
+from bln_etl.api import Client
 
 # Set up the client
 client = Client() # Or Client(api_token=<YOUR_TOKEN>)
@@ -58,7 +58,7 @@ client.open_projects
 Get a particular project.
 
 ```python
-from bln_etl import Project
+from bln_etl.api import Project
 
 # Projects can be looked up using an "id".
 # (accessible, for example, from Client.user_projects)
