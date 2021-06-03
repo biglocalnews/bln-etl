@@ -25,8 +25,8 @@ In particular, this package provides utility code to:
 
 * [Install git CLI tools](https://git-scm.com/downloads)
 * Install the `bln_etl` package from GitHub:
-  ```python
-  TK: pip install <github repo url after open sourcing>
+  ```bash
+  pip install git+https://github.com/biglocalnews/bln-etl#egg=bln-etl
   ```
 * Sign in to [Big Local News][] and create an API key in `Developer -> Manage Keys`
 * Set the `BLN_API_KEY=<YOUR_KEY>` environment variable obtained in prior step
