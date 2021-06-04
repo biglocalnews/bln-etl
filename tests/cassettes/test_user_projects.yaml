@@ -755,4 +755,178 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: '{"query": "\nquery {\n    user {\n       effectiveProjectRoles {\n            edges
+      {\n                node {\n                    role\n                    project
+      {\n                        \nid\nname\ndescription\ncontact\ncontactMethod\ncreatedAt\nupdatedAt\nisOpen\n\n                    }\n                }\n            }\n        }\n    }\n}\n",
+      "variables": {}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '370'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 04 Jun 2021 17:47:38 GMT
+      Expires:
+      - Fri, 04 Jun 2021 17:47:38 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=a839fa12-d670-46e5-83b7-f5a373ac71c2; Expires=Mon, 05-Jul-2021 17:47:38
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - e1d1337e274b82859ea28eed3bdceb6f;o=1
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "\nquery {\n    user {\n       effectiveProjectRoles {\n            edges
+      {\n                node {\n                    role\n                    project
+      {\n                        \nid\nname\ndescription\ncontact\ncontactMethod\ncreatedAt\nupdatedAt\nisOpen\n\n                    }\n                }\n            }\n        }\n    }\n}\n",
+      "variables": {}}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - JWT DUMMY
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '370'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://api.biglocalnews.org/graphql
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA8xYbY/aSBL+fr+ixZfd0w1O28a8WDppJwOTzCg2STAzMrunyNgNbsYvrLsNA1H+
+        +z1tYIAJZLNJ9vZGSIMad1X10/VUPeWPtSiQQc3+WCsFK9R/NpmwUPIFe1vkM3x7nydMVD9EU/Xl
+        14+1LI+YWplvnlBfwzyTQShrdm1WCsmzNFjlv0zTgCdamKe1i90DDpNxHuGxnnN580atFyyQLLpU
+        Ww1q0Dq16rrl6W3bsvDRmq1Os9n6F6U2pXg8YiIs+FzyPMMGLHBlbPj6dhGkd7OoO0/99bu188o3
+        3Cu6Gnm+8cZ7ZzrdB+nfD5fulR47Rm/peMNl35vqo9T/t7Ih+nMGe5MgEeyilgUpjlcbIDCZMOLx
+        lAnC02DKyNvutcCGcg7UjoJu1w3d01u20bGtpkaNBqV0G/Sni1oBDGGx173x+u9rnz5d/AGGIZub
+        vwgZZJO8iDQWlfC5RfiPANTrtFHXDU9v2pZpm5ZmtBu00zgDYH/w+pKoDCBXQcLhLePB56Dmlj8L
+        Hx3PWTucGn3v5QNA1V3Dl/7sLh0NdO4ad6nr3SXuzG+MutPzoCqH9avLzzE8jLtlm23NarVOYXjZ
+        dW7cr4BwzKdJHgZJxpbiG6FELpp1U/cMQ0FJG1qnYzas9hkoX/IpeaM8EhcuiciCuYhzKYiMudhg
+        nGchIwG+r8ikyFPixYzc5nEmyOt8/sDxf5iBeIXgckWuWCZZQXAnZLASkqWCDELOKhNZRHrZlGeM
+        FTybasqQgOWCwTZPVqRg87yA62XMw5iApgseMRIGgokLEiGvY0ECGClYmMMfiyo3QZIQgDbGERR0
+        imN4DFZYklRfEB2yngwkkl+QMC8zyZmo3MM1TplnjFwN7siEgzcqchbAP877k9jGVD1McDSOHYJJ
+        kk+edsAHFgs2KZiI4ac6y2bDms/nWAmKMAZAyjfKDc9wNLbgeanwPTy3OtsGDQkvMkjV5mXMMlwG
+        W+FA8FPOkzyIsD5ekeO708jbhAErEuK45y8IyGyq0RhGEAtMk/c95GdPO0GhpWOMuDO7tNwBNZ11
+        +PjGez/rd3uyD1q5nFq+d81HqFv+fc9wu8NDCsmi3Jel44S56t/ddHF6MLh+DMJJijVRHTyKwtq0
+        dUPTm8bfTzFUK6ooplu22dGsBm3q58r98TX9XRST6AdI3QKpv03qP0u0cyRTZDvHsZ5iUsWrirJi
+        U0Fug4wYBpF5lX1ggwC1NHIN6ql0PDaGlT1NnyhaVYWqGij2KtJuCsTeyvNwL5Ttc5YuqiKwN3Nk
+        eV9vKq9/VTE4dUNfWRICSJv/VUnQ/fXQhETRVUnw17cpSkIy8oay/+qGOiuUhPUd5Ixv+en1Q9/7
+        ppJwAMUXC4JJ7UZHo6b+PQVBluk0L1j2jf0WEsBSMgpaz2zaRkuzdNrQrTP99hY6k6APQWxOSV5K
+        InLFS1lOJifKrzXqvls56x4F1nr//jqGgjEqBeONUndF184s5qPuDe5kagL/w/J7LAs9uCRbbXwS
+        Upyh41HdNto2bWuddud7IP1RMkY3PR3S1LL1ltbqUKu5U6fPJXVXtZKtYjhBBEKWKFJTKIiNbNjJ
+        mE0f8ooghI6Z7vAhP8dSzoX94gWKFo/k9mc1Erz454b92xmCRFyops6zEvyr+lmYJ4maRPJMdVdH
+        9X6CCUHXCPkt+y3zlKx61hF2xrbyAILiqUkooaFK4oRn0DeVyIJhLKpCWKmbAKoiVSVUIIKt0iA/
+        HwcOHYK479lPC8itROSkzOY4MjYo27tNyj3qsCBVmVS1EHKCQ8xF+TJTqkP55VnEgUmJaLYhQLSg
+        kLMsGEM9sUfok6ISYVuNJEgpFLbqhqCcJNMUDM8QEGweYBeDCBQSXNwpo70cVYKrEg1Pl1WhLeNA
+        VpopWEBKVSGUcyBUsN9LZPwJSTOP3ZkLxf+wBH+MkZdwcKrhdqfS95KZz/W4f3+j1lNInwQTxCGn
+        jiRNFc8uOTaXv4XyHMEgyiuCoWbprf8DEWPWjUrEKGlFNYO2devrCLbgAZJUpXow3l33mMklg1Yd
+        Di6vMVMjOZEZx/esuIP0xwcCIM+muUoMTO5Q/SqHttSpNoJYsuDjElK2UuyresIWLNnAjAtGsk54
+        kSKFw7zIs2DBC+jpvSrYqYFDTbyPTI03aurYF41CxcawXLD9MIA4IRjUo2FZoEPIJwaqsy05Jo+x
+        kuQwVNFfifmgwIARkTYJtHRj8/kUoGzOCw5+bfkMIcZlXI1YO+GvyPMnlP8AQW9E/GYkiiKuKhBI
+        GjFMHIma/p+/cohHnmO5s2iG6bjhp3fo4+/WbtdRPEg2E3NPH70axa73gOm492UefNiB+2FzXR+q
+        qzhJhErNQzcj68ym1rS+a2D+Ic0bja9pm9X8blodqhtnmvdT9lYdXPUb9arpVJFJndnUxPsa01eN
+        u+smClx/9oC56WE9GlDqpsNHdzaKR/coRqlzCO7njRs0+QKSLbtRySDTan9Pz/5RSLZsio+utSne
+        4JwrJ1+NZP7Yf+U0nPXLmbvSU382XQHJpXN/gzQdqhc7lnOPMu09LJGiFBPqtyG5UT8Hoeu0vU2C
+        /Yuw3Uuc/3zC3z/+CwAA//8DADLm7ruEFAAA
+    headers:
+      Access-Control-Allow-Origin:
+      - https://biglocalnews.org
+      Cache-Control:
+      - private
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 04 Jun 2021 17:47:56 GMT
+      Expires:
+      - Fri, 04 Jun 2021 17:47:56 GMT
+      Server:
+      - Google Frontend
+      Set-Cookie:
+      - session=79e8045b-dc13-44e2-b96c-bf8385dfdcf7; Expires=Mon, 05-Jul-2021 17:47:56
+        GMT; Secure; HttpOnly; Path=/
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Cloud-Trace-Context:
+      - bc7cd770795ce816b35fb52a2e5a54f4;o=1
+    status:
+      code: 200
+      message: OK
 version: 1

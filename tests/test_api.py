@@ -5,7 +5,7 @@ import pytest
 from bln_etl.api import Client, Project
 from .conftest import fixture_path
 
-TOKEN=os.environ.get('BLN_API_KEY', 'DUMMY')
+TOKEN=os.environ.get('BLN_API_KEY')
 
 
 @pytest.fixture(scope='module')
@@ -14,9 +14,8 @@ def project_uuid():
 
 @pytest.mark.vcr()
 def test_user_projects(project_uuid):
-    client = Client(TOKEN)
+    client = Client(api_token=TOKEN)
     projects = client.user_projects
-    assert len(projects) == 7
     # Expected attributes
     project = [p for p in projects if p.name == 'Test Project'][0]
     assert project.id == project_uuid
@@ -24,7 +23,8 @@ def test_user_projects(project_uuid):
     assert project.slug == 'test-project-UHJvamVjdDo5ZDQ'
     assert project.description == 'Just testing out some stuff'
     assert project.is_open == False
-    assert project.contact == 'tumgoren@stanford.edu'
+    # Gross test for presence of email
+    assert '@' in project.contact
     assert project.contact_method == 'EMAIL'
     assert project.user_role == 'ADMIN'
     assert project.created_at.startswith('2021')
@@ -33,7 +33,7 @@ def test_user_projects(project_uuid):
 
 @pytest.mark.vcr()
 def test_open_projects():
-    client = Client(TOKEN)
+    client = Client(api_token=TOKEN)
     projects = client.open_projects
     assert len(projects) ==  37
     for proj in projects:
@@ -42,23 +42,23 @@ def test_open_projects():
 
 @pytest.mark.vcr()
 def test_project_get(project_uuid):
-    project = Project.get(project_uuid, TOKEN)
+    project = Project.get(project_uuid, api_token=TOKEN)
     assert project.name == 'Test Project'
 
 
 @pytest.mark.vcr()
 def test_project_get_error(project_uuid):
-    project = Project.get(project_uuid[:-2], TOKEN)
+    project = Project.get(project_uuid[:-2], api_token=TOKEN)
     assert project is None
 
 
 @pytest.mark.vcr()
 def test_project_create():
-    kwargs = {
+    meta = {
         'is_open': False ,
-        'description': 'This is a test project.'
+        'description': 'This is a test project.',
     }
-    project = Project.create('Testing',TOKEN, kwargs)
+    project = Project.create('Testing', api_token=TOKEN, meta=meta)
     assert project.name == 'Testing'
 
 
@@ -72,7 +72,7 @@ def test_project_upload_files():
         'description': 'This is a test project.'
     }
     uuid = 'UHJvamVjdDpmMjg3MTU3YS01ODNlLTQzYjktOTkzZS00NmUxNjZhZWNlNmM='
-    project = Project.get(uuid, TOKEN)
+    project = Project.get(uuid, api_token=TOKEN)
     to_upload = [
         fixture_path('test.csv'),
         fixture_path('test2.csv')
@@ -86,7 +86,7 @@ def test_project_upload_files():
 @pytest.mark.vcr()
 def test_project_files():
     uuid = 'UHJvamVjdDpmMjg3MTU3YS01ODNlLTQzYjktOTkzZS00NmUxNjZhZWNlNmM='
-    project = Project.get(uuid, TOKEN)
+    project = Project.get(uuid, api_token=TOKEN)
     expected = ['test.csv', 'test2.csv']
     actual = [f.name for f in project.files]
     assert actual == expected
@@ -95,7 +95,7 @@ def test_project_files():
 @pytest.mark.webtest
 def test_project_file_delete():
     uuid = 'UHJvamVjdDpmMjg3MTU3YS01ODNlLTQzYjktOTkzZS00NmUxNjZhZWNlNmM='
-    project = Project.get(uuid, TOKEN)
+    project = Project.get(uuid, api_token=TOKEN)
     expected = ['test.csv', 'test2.csv', 'test.json']
     to_upload = [
         fixture_path('files/test.json')

@@ -59,7 +59,8 @@ class Base:
             'created_at': node.get('createdAt', node.get('updatedAt')),
             'updated_at': node.pop('updatedAt'),
             'contact_method':node.pop('contactMethod'),
-            'is_open': node.pop('isOpen')
+            'is_open': node.pop('isOpen'),
+            'api_token': cls.api_token
         })
         return node
 
