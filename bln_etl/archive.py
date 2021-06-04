@@ -10,17 +10,22 @@ class Archive:
     def __init__(self, path):
         self.path = Path(path)
 
-    def add(self, path, rename=None, drop_root=None):
+    def add(self, path, mode='a', rename=None, drop_root=None):
         """Add file to archive.
 
-        By default, adds base name of file.
+        By default, this method:
+
+        - runs in append mode
+        - adds only the base name of file (i.e. drops nested folder structure)
+
+        Use the "mode" flag to set a different Zipfile.write mode.
 
         Use "rename" to store the file using an alternative name.
 
         Use "drop_root" to preserve nested directory structure starting after
         a specified path component (non-inclusive of specified path).
         """
-        with ZipFile(self.path, 'a') as zfile:
+        with ZipFile(self.path, mode) as zfile:
             args = [path]
             kwargs = {}
             if drop_root:
@@ -35,7 +40,7 @@ class Archive:
         with ZipFile(self.path, 'r') as zfile:
             return zfile.namelist()
 
-    def add_dir(self, folder, pattern='**/*', skip_hidden=True):
+    def add_dir(self, folder, mode='a', pattern='**/*', skip_hidden=True):
         """Append directory contents to a zipfile
 
         Preserves nested structure of files within a directory, 
@@ -46,7 +51,7 @@ class Archive:
 
         """
         root = Path(folder)
-        with ZipFile(self.path, mode='a') as zfile:
+        with ZipFile(self.path, mode=mode) as zfile:
             for pth in root.glob(pattern):
                 if pth.is_dir():
                     continue

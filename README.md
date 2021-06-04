@@ -194,6 +194,32 @@ archive.add_dir('/tmp/folder-with-data', skip_hidden=False)
 archive.list()
 ```
 
+The `add` and `add_dir` methods operate in *append* mode by default, meaning
+they will add files to a new or pre-existing [Zipfile][].
+
+These methods allow you to configure the write mode for Zipfiles.
+This can be useful in data scrapers that run on a schedule, allowing you to
+use write mode on the first call (thereby deleting a pre-existing Zipfile of the same
+name), and then use the default append mode on subsequent calls.
+
+```python
+from bln_etl import Archive
+
+archive = Archive('/tmp/data.zip')
+
+# Add a single file using write mode
+# to overwrite any previous archive at the same path
+archive.add('/tmp/data.csv', mode='w')
+
+# ...or add an entire dir in (over)write mode
+archive.add_dir('/tmp/dir-with-lots-of-data', mode='w')
+
+# On subsequent calls, default to append mode 
+# to update the new zipfile
+archive.add('/tmp/data2.csv')
+archive.add_dir('/tmp/some-other-data-dir')
+```
+
 > See the [`Archive` class][] for additional usage details.
 
 [`Archive` class]: https://github.com/biglocalnews/bln-etl/blob/1cc80233d79b9ec9d091f8b46fd27510c8b59ec4/bln_etl/archive.py#L8
@@ -201,6 +227,7 @@ archive.list()
 [context manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
 [repository]: https://github.com/biglocalnews/bln-etl/blob/1491e328025466a33339e861aefc5235c32cefb3/bln_etl/repository.py#L6
 [with statement]: https://docs.python.org/3/reference/compound_stmts.html#with
+[Zipfile]: https://docs.python.org/3/library/zipfile.html#zipfile-objects
 
 ## Contributors
 

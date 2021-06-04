@@ -95,3 +95,31 @@ def test_list(tmp_path):
     archive = Archive(zip_path)
     contents = ['test.csv', 'test2.csv']
     assert archive.list() == contents
+
+
+def test_add_mode_config(tmp_path):
+    "should support mode configuration on add"
+    pth = Path(tmp_path, 'archive.zip')
+    csv1 = fixture_path('test.csv')
+    csv2 = fixture_path('files/test2.csv')
+    archive = Archive(pth)
+    archive.add(csv1)
+    # Passing "w" for write should overwrite pre-existing data
+    archive.add(csv2, mode='w')
+    files = ZipFile(pth).namelist()
+    assert files == ['test2.csv']
+
+
+def test_add_dir_mode_config(tmp_path):
+    "should support mode configuration on add_dir"
+    pth = Path(tmp_path, 'archive.zip')
+    target_dir = fixture_path('files')
+    nested_dir = fixture_path('files/nested')
+    archive = Archive(pth)
+    archive.add_dir(target_dir)
+    # Nested dir includes fewer files than parent files
+    # so with "write" mode, it will overwrite all pre-existing
+    # and only include the file(s) in nested/
+    archive.add_dir(nested_dir, mode='w')
+    contents = ['test3.csv' ]
+    assert ZipFile(pth).namelist() == contents
