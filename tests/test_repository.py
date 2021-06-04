@@ -82,3 +82,23 @@ def test_push(git_project_dir):
             ]
             actual_calls = [call[1] for call in check_output.mock_calls]
             assert actual_calls == expected_calls
+
+
+@pytest.mark.usefixtures(
+    'init_repo',
+    'create_readme',
+)
+def test_pull(git_project_dir):
+    repo_url = 'git@github.com:biglocalnews/bln-etl.git'
+    patch_target = 'bln_etl.repository.subprocess.check_output'
+    with mock.patch(patch_target) as check_output:
+        with Repository(git_project_dir) as repo:
+            repo.commit('Initial commit')
+            repo.pull()
+            expected_calls = [
+                mock.call(['git', 'commit', '-m', 'Initial commit']),
+                mock.call(['git', 'pull'])
+            ]
+            #actual_calls = [call[1] for call in check_output.mock_calls]
+            assert check_output.mock_calls == expected_calls
+

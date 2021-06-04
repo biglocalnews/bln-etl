@@ -54,3 +54,6 @@ class Repository:
 
     def push(self, remote='origin', branch='main'):
         return subprocess.check_output(['git', 'push', '-u', remote, branch])
+
+    def pull(self):
+        return subprocess.check_output(['git', 'pull'])

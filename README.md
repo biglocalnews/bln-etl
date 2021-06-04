@@ -148,6 +148,9 @@ with Repository('/path/to/data-project-repo') as repo:
 
   # Customize the push
   repo.push(remote="upstream", branch="master")
+
+  # Pull changes (current branch only)
+  repo.pull()
 ```
 
 [Repository][] also provides a static method that doesn't require use of a
