@@ -202,8 +202,11 @@ archive.list()
 ## Contributors
 
 Tests use pytest and vcrpy to record live web interactions. A small number of tests
-that hit live web services are marked as `webtest` and require an
+that *always* hit live web services are marked as `webtest` and require an
 additional command-line flag to force their execution.
+
+All tests require a valid `BLN_API_KEY` environment variable to be set.
+See [Install instructions](#install) for more details.
 
 ```python
 # Run tests
