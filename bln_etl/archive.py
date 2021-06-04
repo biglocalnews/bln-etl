@@ -10,10 +10,12 @@ class Archive:
     def __init__(self, path):
         self.path = Path(path)
 
-    def add(self, path, drop_root=None):
+    def add(self, path, rename=None, drop_root=None):
         """Add file to archive.
 
         By default, adds base name of file.
+
+        Use "rename" to store the file using an alternative name.
 
         Use "drop_root" to preserve nested directory structure starting after
         a specified path component (non-inclusive of specified path).
@@ -25,6 +27,8 @@ class Archive:
                 kwargs['arcname'] = self._arcname(path, drop_root)
             else:
                 kwargs['arcname'] = Path(path).name
+            if rename:
+                kwargs['arcname'] = self._rename(kwargs['arcname'], rename)
             zfile.write(path, **kwargs)
 
     def list(self):
@@ -56,3 +60,6 @@ class Archive:
         return str(file_path)\
                 .split(str(split_on))[-1]\
                 .lstrip('/')
+
+    def _rename(self, arcname, new_name):
+        return str(Path(arcname).with_name(new_name))

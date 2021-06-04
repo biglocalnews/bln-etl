@@ -15,6 +15,18 @@ def test_add_file(tmp_path):
     files = ZipFile(pth).namelist()
     assert files == ['test.csv', 'test2.csv']
 
+def test_add_file_rename(tmp_path):
+    "should allow renaming of file when added"
+    pth = Path(tmp_path, 'archive.zip')
+    csv1 = fixture_path('test.csv')
+    # Note by default, add does not preserve nesting
+    csv2 = fixture_path('files/test2.csv')
+    archive = Archive(pth)
+    archive.add(csv1, rename="foo.csv")
+    archive.add(csv2, rename="bar.csv")
+    files = ZipFile(pth).namelist()
+    assert files == ['foo.csv', 'bar.csv']
+
 def test_add_file_drop_root(tmp_path):
     "should maintain folder structure relative to specified root"
     pth = Path(tmp_path, 'archive.zip')

@@ -178,6 +178,9 @@ archive = Archive('/tmp/data.zip')
 # Add a single file
 archive.add('/tmp/data.csv')
 
+# Add a file but store using a different name
+archive.add('/tmp/data.csv', rename='foo.csv')
+
 # Add all files in directory tree
 archive.add_dir('/tmp/folder-with-data')
 
