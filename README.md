@@ -166,9 +166,8 @@ Repository.clone_to_dir(url, target_dir)
 
 ### Archive
 
-A wrapper class to help with creation of [ZipFiles][].
+A wrapper class to help with creation of a [Zipfile][].
 
-[ZipFiles]: https://docs.python.org/3/library/zipfile.html#zipfile.ZipFile.getinfo
 
 ```python
 from bln_etl import Archive
@@ -193,6 +192,10 @@ archive.add_dir('/tmp/folder-with-data', skip_hidden=False)
 # List files in archive
 archive.list()
 ```
+
+> See the [`Archive` class][] for additional usage details.
+
+#### Write mode configuration
 
 The `add` and `add_dir` methods operate in *append* mode by default, meaning
 they will add files to a new or pre-existing [Zipfile][].
@@ -220,7 +223,15 @@ archive.add('/tmp/data2.csv')
 archive.add_dir('/tmp/some-other-data-dir')
 ```
 
-> See the [`Archive` class][] for additional usage details.
+#### Compression
+
+The [`Archive` class][] attempts to use Python ZipFile's [ZIP_DEFLATED][] compression type
+if the [zlib][] library is installed. If it *is* installed, it uses zlib's
+[default compression level][].
+
+If `zlib` or its system-level dependencies are not installed, `Archive` falls back to
+ZipFile's default [ZIP_STORED][] compression type (i.e.  uncompressed).
+
 
 [`Archive` class]: https://github.com/biglocalnews/bln-etl/blob/1cc80233d79b9ec9d091f8b46fd27510c8b59ec4/bln_etl/archive.py#L8
 [Big Local News]: https://biglocalnews.org
@@ -228,6 +239,11 @@ archive.add_dir('/tmp/some-other-data-dir')
 [repository]: https://github.com/biglocalnews/bln-etl/blob/1491e328025466a33339e861aefc5235c32cefb3/bln_etl/repository.py#L6
 [with statement]: https://docs.python.org/3/reference/compound_stmts.html#with
 [Zipfile]: https://docs.python.org/3/library/zipfile.html#zipfile-objects
+[zlib]: https://docs.python.org/3/library/zlib.html
+[default compression level]: https://docs.python.org/3/library/zlib.html#zlib.compressobj
+[ZIP_DEFLATED]: https://docs.python.org/3/library/zipfile.html#zipfile.ZIP_DEFLATED
+[ZIP_STORED]: https://docs.python.org/3/library/zipfile.html#zipfile.ZIP_STORED
+
 
 ## Contributors
 

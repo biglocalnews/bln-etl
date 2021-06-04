@@ -2,7 +2,14 @@ import os
 import glob
 
 from pathlib import Path
-from zipfile import ZipFile
+from zipfile import ZipFile, ZIP_STORED, ZIP_DEFLATED
+
+
+try:
+    import zlib
+    COMPRESSION_TYPE=ZIP_DEFLATED
+except ImportError:
+    COMPRESSION_TYPE=ZIP_STORED
 
 
 class Archive:
@@ -27,7 +34,9 @@ class Archive:
         """
         with ZipFile(self.path, mode) as zfile:
             args = [path]
-            kwargs = {}
+            kwargs = {
+                'compress_type': COMPRESSION_TYPE,
+            }
             if drop_root:
                 kwargs['arcname'] = self._arcname(path, drop_root)
             else:
@@ -58,7 +67,11 @@ class Archive:
                 if skip_hidden and pth.name.startswith('.'):
                     continue
                 arcname = self._arcname(pth, root)
-                zfile.write(pth, arcname=arcname)
+                zfile.write(
+                    pth,
+                    arcname=arcname,
+                    compress_type=COMPRESSION_TYPE
+                )
 
     def _arcname(self, file_path, split_on):
         # Remove root folders and leading slash
