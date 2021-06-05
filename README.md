@@ -268,3 +268,15 @@ pytest
 # Force running of all tests, including live "webtests"
 pytest --webtest
 ```
+
+To update semantic versioning:
+
+> setup.cfg specifies files to change on version update,
+> and is configured to automatically commit and tag file changes
+
+```bash
+bumpversion [major|minor|patch]
+
+# e.g., switch 0.1.0 -> 0.1.1
+bumpversion patch
+```
