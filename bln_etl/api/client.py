@@ -3,7 +3,7 @@
 import os
 import requests
 
-from bln.client import Client as BlnClient
+from bln.client import Client as BlnClient, _upload_file
 
 from bln_etl.utils import (
     snake_to_camel_case
@@ -63,6 +63,16 @@ class Base:
             'api_token': cls.api_token
         })
         return node
+
+
+class BlnClientWrapper(BlnClient):
+    """Override BLN client class to fix behavior, as needed.
+    """
+
+    def upload_files(self, projectId, files):
+        """Override upload_files b/c multiprocessing on Linux is buggy"""
+        for f in files:
+            _upload_file(self.endpoint, self.token, projectId, f)
 
 
 class Client(Base):
@@ -212,7 +222,7 @@ class Project(Base):
     def create(cls, name, api_token=None, meta={}):
         cls.set_api_token(api_token)
         new_meta = {snake_to_camel_case(k): v for (k, v) in meta.items()}
-        client = BlnClient(cls.api_token)
+        client = BlnClientWrapper(cls.api_token)
         response = client.createProject(name, **new_meta)
         if response:
             kwargs = cls._prepare_project_kwargs(response)
@@ -221,5 +231,5 @@ class Project(Base):
         return response
 
     def upload_files(self, files):
-        client = BlnClient(self.api_token)
+        client = BlnClientWrapper(self.api_token)
         client.upload_files(self.id, files)
