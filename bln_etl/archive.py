@@ -73,6 +73,17 @@ class Archive:
                     compress_type=COMPRESSION_TYPE
                 )
 
+    def extractall(self, path=None):
+        """Extract zip contents to same dir as zip.
+
+        Args:
+            path (str): Specify an alternate directory to extract members to.
+
+        """
+        extract_to = path or Path(self.path).parent
+        with ZipFile(self.path, mode='r') as zfile:
+            zfile.extractall(path=extract_to)
+
     def _arcname(self, file_path, split_on):
         # Remove root folders and leading slash
         return str(file_path)\

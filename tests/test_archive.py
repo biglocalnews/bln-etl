@@ -1,3 +1,4 @@
+import shutil
 from pathlib import Path
 from zipfile import ZipFile
 from bln_etl import Archive
@@ -123,3 +124,28 @@ def test_add_dir_mode_config(tmp_path):
     archive.add_dir(nested_dir, mode='w')
     contents = ['test3.csv' ]
     assert ZipFile(pth).namelist() == contents
+
+
+def test_extractall(tmp_path):
+    "should extract files in same directory as the zip by default"
+    source = fixture_path('test.zip')
+    dest = str(Path(tmp_path, 'test.zip'))
+    shutil.copy(source, dest)
+    archive = Archive(dest)
+    archive.extractall()
+    expected = ['test.csv', 'test.zip', 'test2.csv']
+    actual = [f.name for f in tmp_path.glob('*')]
+    assert expected == actual
+
+
+def test_extractall_to_path(tmp_path):
+    "should extract files to specified directory"
+    source = fixture_path('test.zip')
+    dest = str(Path(tmp_path, 'test.zip'))
+    shutil.copy(source, dest)
+    archive = Archive(dest)
+    alt_path = Path(tmp_path, 'other_dir')
+    archive.extractall(path=alt_path)
+    expected = ['test.csv', 'test2.csv']
+    actual = [f.name for f in alt_path.glob('*')]
+    assert expected == actual

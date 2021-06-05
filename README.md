@@ -189,6 +189,13 @@ archive.add_dir('/tmp/folder-with-data', pattern='**/*.csv')
 # Include hidden files in directory tree
 archive.add_dir('/tmp/folder-with-data', skip_hidden=False)
 
+# Extract files in zip to same dir as zip
+archive.extractall()
+
+# Extract files in zip to some other directory
+archive.extractall(path="/tmp/some/other/dir")
+
+
 # List files in archive
 archive.list()
 ```
