@@ -18,7 +18,7 @@ test_requirements = [
 
 setup(
     name='bln-etl',
-    version='0.1.0',
+    version='0.1.1',
     description="Utilities for data gathering pipelines for Big Local News.",
     long_description=__doc__,
     author="Serdar Tumgoren",
