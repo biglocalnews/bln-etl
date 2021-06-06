@@ -7,24 +7,6 @@ import pytest
 from bln_etl import Repository
 
 
-"""
-@pytest.fixture
-def create_config(config_path):
-    config_fixture = Path(__file__)\
-        .parent\
-        .joinpath('fixtures/config.yaml')
-    shutil.copyfile(config_fixture, config_path)
-
-
-@pytest.fixture(autouse=True)
-def set_env(monkeypatch):
-    monkeypatch.setenv(
-        'BLN_API_KEY',
-        '3rafaj;adksfh;ac'
-    )
-"""
-
-
 @pytest.fixture(scope='module')
 def vcr_config():
     return {
