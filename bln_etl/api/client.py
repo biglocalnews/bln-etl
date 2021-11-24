@@ -69,10 +69,12 @@ class BlnClientWrapper(BlnClient):
     """Override BLN client class to fix behavior, as needed.
     """
 
+    auth_method = 'JWT'
+
     def upload_files(self, projectId, files):
         """Override upload_files b/c multiprocessing on Linux is buggy"""
         for f in files:
-            _upload_file(self.endpoint, self.token, projectId, f)
+            _upload_file(self.endpoint, self.auth_method, self.token, projectId, f)
 
 
 class Client(Base):

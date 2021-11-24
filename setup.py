@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 
 requirements = [
-    'bln',
+    'bln==0.4.0',
     'requests',
 ]
 
