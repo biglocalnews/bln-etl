@@ -1,5 +1,0 @@
-bumpversion
-flake8
-pytest
-pytest-vcr
-vcrpy
